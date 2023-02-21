@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% include 'cdnlines.html' %} <!--bootstrap cdn lines -->
+    <title>EMPLOYEE_DETAILS</title>
+
+    <!--styling for form-->
+    <style>
+        input{
+            margin-top: 30px;
+        }
+        body{
+           background-color:grey;
+            background-repeat: no-repeat;
+            background-size: cover;
+            
+        }
+        #emp_form{
+            border: 2px solid white;
+            border-radius: 20px;
+            margin-top: 80px;
+            margin-left:500px;
+            padding-right:30px;
+            padding-left:30px;
+            
+        }
+        #login{
+            margin-left: 1400px;
+           
+        }
+        #n{
+            height: 40px;
+        }
+    </style>
+</head>
+<style>
+   
+    label{
+        margin-top:10px;
+        color:white;
+    }
+    input{
+        margin-top:5px;
+    }
+</style>
+{% include 'navbar.html' %}
+<body>
+    <hr>
+    <div class="container-fluid"> <!--creating division for form-->
+        <div class="row">
+            <div class="col-md-8">
+                <form method="POST" id="emp_form" style='border:2px solid grey; margin-top:0px;'><!--employee form-->
+                    {% csrf_token %}
+                    <label>EID:</label> <!--creating label for employee id-->
+                    <input type="number" placeholder="EMPLOYEE ID" class="form-control" name='eid' style="border-radius:20px;" required min="1">
+                    <label>EMPLOYEE NAME:</label><!--creating label for employee name-->
+                    <input type="text"placeholder='EMPLOYEE NAME' class="form-control" name='ename' style="border-radius:20px;" required>
+                    <label>DOJ:</label><!--creating label for doj-->
+                    <input type="date" placeholder="DATE OF JOINING" class="form-control" name='doj' style="border-radius:20px;" required>
+                    <label>EXPECTED SALARY:</label><!--creating label for expected SALARY-->
+                    <input type="number" placeholder="EXPECTED SALARY" class="form-control" name='esal' style="border-radius:20px;" required min="1">
+                    <label>PREVIOUS EXPERIENCE:</label> <!--creating label for previous EXPERIENCE-->
+                    <input type="text" placeholder="PREVIOUS EXPERIENCE" class="form-control" name='prevexp' style="border-radius:20px;" required>
+                    <label>DESIGNATION:</label> <!--creating label for designation-->
+                    <input type="text" placeholder="DESIGNATION" class="form-control" name='desg' style="border-radius:20px;" required>
+                    <input type="submit" value="SUBMIT" style="margin-left: 150px;margin-bottom:30px;border-radius:20px; " class="bg-success text-white mt-3">
+                    <input type="reset" value="CLEAR" class="bg-danger text-white mt-3" style="border-radius:20px;margin-left: 50px;">
+                    {% include 'alerts.html' %} <!--including alerts.html file in this file-->
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        window.history.forward();
+        function noBack() {
+            window.history.forward();
+        }
+    </script>
+
+
+</body>
+</html>

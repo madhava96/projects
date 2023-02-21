@@ -1,0 +1,62 @@
+<html>
+    <head>
+        <title>
+            ADMIN PAGE
+        </title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+        <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.1/dist/jquery.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+    </head>
+    <style>
+        body{
+            background-image: url('https://img.freepik.com/free-psd/empty-room-wall-mockup-psd-modern-interior-design_53876-129121.jpg?size=626&ext=jpg&ga=GA1.1.1902851442.1668763448&semt=sph');
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        form{
+            background-color:darkgrey;
+            margin-left:280px;
+            width:90%;
+            margin-top:50px;
+            border-radius:20px;
+            border:2px solid black;
+
+        }
+        #login,#password{
+            margin-top: 10px;
+            border-radius: 50px;
+        }
+        label{
+            margin-top:30px;
+            margin-left:10px;
+            font-size:20px;
+        }
+    </style>
+    <body>
+        <h1 style="margin-left: 600px;" class="text-warning">MANAGER LOGIN</h1>
+        <a class="nav-link bg-info pr-4 text-center" href="{% url 'HOME' %}" style="border: 2px solid black; margin-left:50px; border-radius:20px;color:white;width:8%;">HOME</a>
+        <hr size="5" color="orange">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <form method='POST'>
+                        {% csrf_token %}
+                                <label>Username:</label>
+                                <input type="text" id="login" name='mname' required placeholder="username" class='form-control'>
+                                <label>Password:</label>
+                                <input type="password" id="password" name='mpwd'placeholder="password" required class='form-control'>
+                                <input type="submit" value="LOGIN" style="margin-left:100px; margin-bottom:20px;border-radius:20px; margin-top:20px; width:100px; font-size:20px;" class="bg-success text-white">
+                                <input type="reset" value="CLEAR" style="border-radius:20px; margin-top:20px; width:100px; font-size:20px; margin-left:30px;" class="bg-danger text-white">
+                    </form>
+                    
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
+
+
+
+

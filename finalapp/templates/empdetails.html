@@ -1,0 +1,160 @@
+<html>
+    <head>
+        <title></title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        {% include 'cdnlines.html' %}  <!--bootstrap cdnlines-->
+        <style>
+           body{
+          
+            background-repeat:no-repeat;
+            background-size:cover;
+           }
+           table{
+            margin-top:50px;
+            border-radius:30px;
+            font-size:20px;
+           }
+           table {
+                border-spacing: 0;
+                width: 100%;
+                border: 1px solid #ddd;
+                }
+
+            th {
+            cursor: pointer;
+            }
+
+            th, td {
+            text-align: left;
+            padding: 16px;
+            }
+
+            tr:nth-child(even) {
+            background-color: #f2f2f2
+            }
+        </style>
+    </head>
+    {% include 'navbar.html' %}
+    <body>
+      <hr size="5" color='black'>
+      <u><h1 class="text-center" >BRIGHTCOM EMPLOYEE_DETAILS</h1></u>
+      <!--fetching data from database in table format-->
+        <table class="table table-bordered" id="myTable">
+            <thead class="bg-info" id="w">
+                <tr class="text-white">
+                  <!--sorting the data-->
+                    <th onclick="sortTable(0)">empid</th>
+                    <th onclick="sortTable(1)">empname</th>
+                    <th onclick="sortTable(2)">doj</th>
+                    <th onclick="sortTable(3)">expsalary</th>
+                    <th onclick="sortTable(4)">prevexp</th>
+                    <th onclick="sortTable(5)">designation</th>
+                </tr>
+            </thead>
+            <tbody class="bg-transparent" id="w">
+                {% if empdat %} {% for i in empdat %}
+                <tr>
+                  <!--getting the table body data from model-->
+                    <td>{{i.empid}}</td>
+                    <td>{{i.empname}}</td>
+                    <td>{{i.doj}}</td>
+                    <td>{{i.expsalary}}</td>
+                    <td>{{i.prevexp}}</td>
+                    <td>{{i.designation}}</td>
+                </tr>
+                {% endfor %} {% endif %}
+
+            </tbody>
+        </table>
+        
+<script>
+    function sortTable(n) {
+      var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+      table = document.getElementById("myTable");
+      switching = true;
+      //Set the sorting direction to ascending:
+      dir = "asc"; 
+      /*Make a loop that will continue until
+      no switching has been done:*/
+      while (switching) {
+        //start by saying: no switching is done:
+        switching = false;
+        rows = table.rows;
+        /*Loop through all table rows (except the
+        first, which contains table headers):*/
+        for (i = 1; i < (rows.length - 1); i++) {
+          //start by saying there should be no switching:
+          shouldSwitch = false;
+          /*Get the two elements you want to compare,
+          one from current row and one from the next:*/
+          x = rows[i].getElementsByTagName("TD")[n];
+          y = rows[i + 1].getElementsByTagName("TD")[n];
+          /*check if the two rows should switch place,
+          based on the direction, asc or desc:*/
+          if (dir == "asc") {
+            if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+              //if so, mark as a switch and break the loop:
+              shouldSwitch= true;
+              break;
+            }
+          } else if (dir == "desc") {
+            if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+              //if so, mark as a switch and break the loop:
+              shouldSwitch = true;
+              break;
+            }
+          }
+        }
+        if (shouldSwitch) {
+          /*If a switch has been marked, make the switch
+          and mark that a switch has been done:*/
+          rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+          switching = true;
+          //Each time a switch is done, increase this count by 1:
+          switchcount ++;      
+        } else {
+          /*If no switching has been done AND the direction is "asc",
+          set the direction to "desc" and run the while loop again.*/
+          if (switchcount == 0 && dir == "asc") {
+            dir = "desc";
+            switching = true;
+          }
+        }
+      }
+    }
+    </script>
+    
+    <nav aria-label="...">
+      {% if empdat.has_other_pages %}
+        <ul class="pagination">
+          {% if empdat.has_previous %}
+            <li class="page-item"><a class="page-link" href="?page={{ empdata.previous_page_number }}">Previous</a></li>
+          {% else %}
+            <li class="page-item disabled"><span class="page-link">Previous</span></li>
+          {% endif %}
+ 
+          {% for i in empdat.paginator.page_range %}
+            {% if empdat.number == i %}
+            <li class="page-item active" aria-current="page"><a class="page-link" href="#">{{ i }}</a></li>
+            {% else %}
+            <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+            {% endif %}
+          {% endfor %}
+ 
+          {% if empdat.has_next %}
+            <li class="page-item"><a class="page-link" href="?page={{ empdata.next_page_number }}"></a></li>
+          {% else %}
+           
+          {% endif %}
+        </ul>
+      {% endif %}
+      </nav>
+
+      <script type="text/javascript">
+        window.history.forward();
+        function noBack() {
+            window.history.forward();
+        }
+    </script>
+
+</html>

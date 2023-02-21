@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.1/dist/jquery.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+    <title>EMPLOYEE_DETAILS</title>
+    <style>
+        input{
+            margin-top: 30px;
+        }
+        body{
+            background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRwn0saSOYjtbsLG5lvh8RLGE07xuGPVQOs0Q&usqp=CAU');
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        #emp_form{
+            border: 1px solid black;
+            border-radius: 20px;
+            margin-top: 80px;
+            margin-left:500px;
+            padding-right:30px;
+            padding-left:30px;
+            
+        }
+        #login{
+            margin-left: 1400px;
+           
+        }
+        #n{
+            height: 40px;
+        }
+    </style>
+</head>
+<style>
+    body{
+        background-image:url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQpnBcKIRhnYeboV4JvGL09IG3RN572fHGwow&usqp=CAU');
+        background-repeat:no-repeat;
+        background-size:cover;
+    }
+    label{
+        margin-top:10px;
+        color:white;
+    }
+    input{
+        margin-top:5px;
+    }
+</style>
+<h1 class="text-center" style='color:orange; margin-right:110px;'>BRIGHTCOM GROUP</h1>
+<a class="nav-link bg-info pr-4 text-center" href="{% url 'details' %}" style="border: 2px solid black; margin-left:50px; border-radius:20px;color:white;width:12%;">EMPLOYEE_DETAILS</a>
+<body>
+    <hr>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-8">
+                <form method="POST" id="emp_form" style='border:2px solid grey; margin-top:0px;'>
+                    {% csrf_token %}
+                    <label>EID:</label>
+                    <input type="number" placeholder="EMPLOYEE ID" class="form-control" name='eid' style="border-radius:20px;" required min="1">
+                    <label>EMPLOYEE NAME:</label>
+                    <input type="text"placeholder='EMPLOYEE NAME' class="form-control" name='ename' style="border-radius:20px;" required>
+                    <label>DOJ:</label>
+                    <input type="date" placeholder="DATE OF JOINING" class="form-control" name='doj' style="border-radius:20px;" required>
+                    <label>EXPECTED SALARY:</label>
+                    <input type="number" placeholder="EXPECTED SALARY" class="form-control" name='esal' style="border-radius:20px;" required min="1">
+                    <label>PREVIOUS EXPERIENCE:</label>
+                    <input type="text" placeholder="PREVIOUS EXPERIENCE" class="form-control" name='prevexp' style="border-radius:20px;" required>
+                    <label>DESIGNATION:</label>
+                    <input type="text" placeholder="DESIGNATION" class="form-control" name='desg' style="border-radius:20px;" required>
+                    <input type="submit" value="SUBMIT" style="margin-left: 150px;margin-bottom:30px;border-radius:20px; " class="bg-success text-white mt-3">
+                    <input type="reset" value="CLEAR" class="bg-danger text-white mt-3" style="border-radius:20px;margin-left: 50px;">
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

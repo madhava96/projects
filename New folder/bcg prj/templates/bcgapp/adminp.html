@@ -1,0 +1,57 @@
+<html>
+    <head>
+        <title></title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+        <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.1/dist/jquery.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+        <style>
+           body{
+            background-image:url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcREDZvXHmBmLX3VttBINkez6kNtWDsh3dH2Tg&usqp=CAU');
+            background-repeat:no-repeat;
+            background-size:cover;
+           }
+           table{
+            margin-top:50px;
+            border-radius:30px;
+            font-size:20px;
+           }
+        </style>
+    </head>
+    <body>
+        <h1 class="text-center text-warning">BRIGHTCOM GROUP EMPLOYEE_DETAILS</h1>
+        <a href="{% url 'HOME' %}" style="border:2px solid black;width:50px; font-size:18px; border-radius:15px;" class="bg-info text-white">HOME</a>
+        <a href="{% url 'emp' %}" style="border:2px solid black;width:50px; font-size:18px;margin-left:20px;border-radius:15px;" class="bg-info text-white ml-2">EMPLOYEE FORM</a>
+        <a href="{% url 'hlogin' %}" style="border:2px solid black;width:50px; font-size:18px; border-radius:15px;" class="bg-info text-white ml-2">LOGOUT</a>
+        <hr size="5" color='orange'>
+        <table class="table table-bordered">
+            <thead class="bg-white" id="w">
+                <tr>
+                    <th>
+                        <a href="{{sortedUrl}}" style="color:black;">empid</a>
+                    </th>
+                    <th>empname</th>
+                    <th>doj</th>
+                    <th>expsalary</th>
+                    <th>prevexp</th>
+                    <th>designation</th>
+                </tr>
+            </thead>
+            <tbody class="bg-transparent" id="w" >
+                {% if empdat %} {% for i in empdat %}
+                <tr class="text-white">
+                    <td>{{i.empid}}</td>
+                    <td>{{i.empname}}</td>
+                    <td>{{i.doj}}</td>
+                    <td>{{i.expsalary}}</td>
+                    <td>{{i.prevexp}}</td>
+                    <td>{{i.designation}}</td>
+                </tr>
+                {% endfor %} {% endif %}
+
+            </tbody>
+        </table>
+    </body>
+</html>
+
