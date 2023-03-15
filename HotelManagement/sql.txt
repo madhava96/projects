@@ -1,0 +1,251 @@
+mysql> create table book(a_room int unique not null, name varchar(50) not null, mobile_no bigint not null, email varchar(70) not null, checkin date not null, checkout date not null, status varchar(15), foreign key(a_room) references rooms(room_no));
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> desc book;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| a_room    | int         | NO   | PRI | NULL    |       |
+| name      | varchar(50) | NO   |     | NULL    |       |
+| mobile_no | bigint      | NO   |     | NULL    |       |
+| email     | varchar(70) | NO   |     | NULL    |       |
+| checkin   | date        | NO   |     | NULL    |       |
+| checkout  | date        | NO   |     | NULL    |       |
+| status    | varchar(15) | YES  |     | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+7 rows in set (0.00 sec)
+
+mysql> desc room;
+ERROR 1146 (42S02): Table 'hotel.room' doesn't exist
+mysql> desc rooms;
++-----------+-------------+------+-----+---------+----------------+
+| Field     | Type        | Null | Key | Default | Extra          |
++-----------+-------------+------+-----+---------+----------------+
+| room_no   | int         | NO   | PRI | NULL    | auto_increment |
+| type      | varchar(10) | YES  |     | NULL    |                |
+| no_of_bed | int         | YES  |     | NULL    |                |
+| status    | varchar(10) | YES  |     | NULL    |                |
++-----------+-------------+------+-----+---------+----------------+
+4 rows in set (0.00 sec)
+
+mysql> drop table book;
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> create table book(a_room int unique, name varchar(50) not null, mobile_no bigint not null, email varchar(70) not null, checkin date not null, checkout date not null, status varchar(15), foreign key(a_room) references rooms(room_no));
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> desc book;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| a_room    | int         | YES  | UNI | NULL    |       |
+| name      | varchar(50) | NO   |     | NULL    |       |
+| mobile_no | bigint      | NO   |     | NULL    |       |
+| email     | varchar(70) | NO   |     | NULL    |       |
+| checkin   | date        | NO   |     | NULL    |       |
+| checkout  | date        | NO   |     | NULL    |       |
+| status    | varchar(15) | YES  |     | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+7 rows in set (0.00 sec)
+
+mysql> alter table book drop column status;
+Query OK, 0 rows affected (0.02 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc book;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| a_room    | int         | YES  | UNI | NULL    |       |
+| name      | varchar(50) | NO   |     | NULL    |       |
+| mobile_no | bigint      | NO   |     | NULL    |       |
+| email     | varchar(70) | NO   |     | NULL    |       |
+| checkin   | date        | NO   |     | NULL    |       |
+| checkout  | date        | NO   |     | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+6 rows in set (0.00 sec)
+
+mysql> table book;
+Empty set (0.00 sec)
+
+mysql> table book;
++--------+--------------+------------+--------------------------+------------+------------+
+| a_room | name         | mobile_no  | email                    | checkin    | checkout   |
++--------+--------------+------------+--------------------------+------------+------------+
+|      1 | Akash Dandge | 7387591037 | akashdandge100@gmail.com | 2023-02-28 | 2023-02-28 |
++--------+--------------+------------+--------------------------+------------+------------+
+1 row in set (0.00 sec)
+
+mysql> select * from room inner join book on room_no = a_room order by room_no;
+ERROR 1146 (42S02): Table 'hotel.room' doesn't exist
+mysql> select * from rooms inner join book on room_no = a_room order by room_no;
++---------+------+-----------+--------+--------+--------------+------------+--------------------------+------------+------------+
+| room_no | type | no_of_bed | status | a_room | name         | mobile_no  | email                    | checkin    | checkout   |
++---------+------+-----------+--------+--------+--------------+------------+--------------------------+------------+------------+
+|       1 | AC   |         3 | BOOKED |      1 | Akash Dandge | 7387591037 | akashdandge100@gmail.com | 2023-02-28 | 2023-02-28 |
++---------+------+-----------+--------+--------+--------------+------------+--------------------------+------------+------------+
+1 row in set (0.00 sec)
+
+mysql> select room_no,name,mobile_no,checkin,checkout,status from rooms inner join book on room_no = a_room order by room_no;
++---------+--------------+------------+------------+------------+--------+
+| room_no | name         | mobile_no  | checkin    | checkout   | status |
++---------+--------------+------------+------------+------------+--------+
+|       1 | Akash Dandge | 7387591037 | 2023-02-28 | 2023-02-28 | BOOKED |
++---------+--------------+------------+------------+------------+--------+
+1 row in set (0.00 sec)
+
+mysql> update rooms set status = 'NOT BOOKED' where status ='NO' or status = 'YES';
+Query OK, 48 rows affected (0.01 sec)
+Rows matched: 48  Changed: 48  Warnings: 0
+
+mysql> table rooms;
++---------+--------+-----------+------------+
+| room_no | type   | no_of_bed | status     |
++---------+--------+-----------+------------+
+|       1 | AC     |         3 | BOOKED     |
+|       2 | AC     |         2 | NOT BOOKED |
+|       3 | NON-AC |         3 | NOT BOOKED |
+|       4 | AC     |         2 | NOT BOOKED |
+|       5 | AC     |         1 | NOT BOOKED |
+|       6 | NON-AC |         1 | NOT BOOKED |
+|       7 | NON-AC |         4 | NOT BOOKED |
+|       8 | NON-AC |         1 | NOT BOOKED |
+|       9 | NON-AC |         2 | NOT BOOKED |
+|      10 | NON-AC |         2 | NOT BOOKED |
+|      11 | NON-AC |         2 | NOT BOOKED |
+|      12 | NON-AC |         1 | NOT BOOKED |
+|      13 | AC     |         3 | NOT BOOKED |
+|      14 | NON-AC |         2 | NOT BOOKED |
+|      15 | NON-AC |         2 | NOT BOOKED |
+|      16 | NON-AC |         1 | NOT BOOKED |
+|      17 | AC     |         3 | NOT BOOKED |
+|      18 | AC     |         1 | NOT BOOKED |
+|      19 | AC     |         4 | NOT BOOKED |
+|      20 | AC     |         3 | NOT BOOKED |
+|      21 | NON-AC |         2 | NOT BOOKED |
+|      22 | AC     |         2 | NOT BOOKED |
+|      23 | NON-AC |         4 | NOT BOOKED |
+|      24 | NON-AC |         5 | NOT BOOKED |
+|      25 | AC     |         5 | NOT BOOKED |
+|      26 | AC     |         4 | NOT BOOKED |
+|      27 | AC     |         5 | NOT BOOKED |
+|      28 | AC     |         5 | NOT BOOKED |
+|      29 | AC     |         1 | NOT BOOKED |
+|      30 | NON-AC |         3 | NOT BOOKED |
+|      31 | AC     |         3 | NOT BOOKED |
+|      32 | NON-AC |         4 | NOT BOOKED |
+|      33 | AC     |         1 | NOT BOOKED |
+|      34 | AC     |         3 | NOT BOOKED |
+|      35 | AC     |         3 | NOT BOOKED |
+|      36 | NON-AC |         4 | NOT BOOKED |
+|      37 | NON-AC |         1 | NOT BOOKED |
+|      38 | AC     |         1 | NOT BOOKED |
+|      39 | AC     |         3 | NOT BOOKED |
+|      40 | AC     |         2 | NOT BOOKED |
+|      41 | AC     |         1 | NOT BOOKED |
+|      42 | NON-AC |         5 | NOT BOOKED |
+|      43 | NON-AC |         2 | NOT BOOKED |
+|      44 | NON-AC |         5 | NOT BOOKED |
+|      45 | AC     |         1 | NOT BOOKED |
+|      46 | AC     |         2 | NOT BOOKED |
+|      47 | AC     |         5 | NOT BOOKED |
+|      48 | AC     |         3 | NOT BOOKED |
+|      49 | NON-AC |         4 | NOT BOOKED |
+|      50 | NON-AC |         1 | NOT BOOKED |
++---------+--------+-----------+------------+
+50 rows in set (0.00 sec)
+
+mysql> select * from rooms where type='AC' and  no_of_bed=2 and status='NOT BOOKED';
++---------+------+-----------+------------+
+| room_no | type | no_of_bed | status     |
++---------+------+-----------+------------+
+|       2 | AC   |         2 | NOT BOOKED |
+|       4 | AC   |         2 | NOT BOOKED |
+|      22 | AC   |         2 | NOT BOOKED |
+|      40 | AC   |         2 | NOT BOOKED |
+|      46 | AC   |         2 | NOT BOOKED |
++---------+------+-----------+------------+
+5 rows in set (0.00 sec)
+
+mysql> select * from rooms where type='AC' and  no_of_bed=2 and status='NOT BOOKED';
++---------+------+-----------+------------+
+| room_no | type | no_of_bed | status     |
++---------+------+-----------+------------+
+|       2 | AC   |         2 | NOT BOOKED |
+|       4 | AC   |         2 | NOT BOOKED |
+|      22 | AC   |         2 | NOT BOOKED |
+|      40 | AC   |         2 | NOT BOOKED |
+|      46 | AC   |         2 | NOT BOOKED |
++---------+------+-----------+------------+
+5 rows in set (0.00 sec)
+
+mysql> table rooms;
++---------+--------+-----------+------------+
+| room_no | type   | no_of_bed | status     |
++---------+--------+-----------+------------+
+|       1 | AC     |         3 | BOOKED     |
+|       2 | AC     |         2 | NOT BOOKED |
+|       3 | NON-AC |         3 | NOT BOOKED |
+|       4 | AC     |         2 | NOT BOOKED |
+|       5 | AC     |         1 | BOOKED     |
+|       6 | NON-AC |         1 | NOT BOOKED |
+|       7 | NON-AC |         4 | NOT BOOKED |
+|       8 | NON-AC |         1 | NOT BOOKED |
+|       9 | NON-AC |         2 | NOT BOOKED |
+|      10 | NON-AC |         2 | NOT BOOKED |
+|      11 | NON-AC |         2 | NOT BOOKED |
+|      12 | NON-AC |         1 | NOT BOOKED |
+|      13 | AC     |         3 | NOT BOOKED |
+|      14 | NON-AC |         2 | NOT BOOKED |
+|      15 | NON-AC |         2 | NOT BOOKED |
+|      16 | NON-AC |         1 | NOT BOOKED |
+|      17 | AC     |         3 | NOT BOOKED |
+|      18 | AC     |         1 | NOT BOOKED |
+|      19 | AC     |         4 | BOOKED     |
+|      20 | AC     |         3 | NOT BOOKED |
+|      21 | NON-AC |         2 | NOT BOOKED |
+|      22 | AC     |         2 | NOT BOOKED |
+|      23 | NON-AC |         4 | NOT BOOKED |
+|      24 | NON-AC |         5 | NOT BOOKED |
+|      25 | AC     |         5 | NOT BOOKED |
+|      26 | AC     |         4 | NOT BOOKED |
+|      27 | AC     |         5 | NOT BOOKED |
+|      28 | AC     |         5 | NOT BOOKED |
+|      29 | AC     |         1 | NOT BOOKED |
+|      30 | NON-AC |         3 | NOT BOOKED |
+|      31 | AC     |         3 | NOT BOOKED |
+|      32 | NON-AC |         4 | NOT BOOKED |
+|      33 | AC     |         1 | BOOKED     |
+|      34 | AC     |         3 | NOT BOOKED |
+|      35 | AC     |         3 | NOT BOOKED |
+|      36 | NON-AC |         4 | NOT BOOKED |
+|      37 | NON-AC |         1 | BOOKED     |
+|      38 | AC     |         1 | NOT BOOKED |
+|      39 | AC     |         3 | NOT BOOKED |
+|      40 | AC     |         2 | NOT BOOKED |
+|      41 | AC     |         1 | NOT BOOKED |
+|      42 | NON-AC |         5 | NOT BOOKED |
+|      43 | NON-AC |         2 | NOT BOOKED |
+|      44 | NON-AC |         5 | NOT BOOKED |
+|      45 | AC     |         1 | NOT BOOKED |
+|      46 | AC     |         2 | NOT BOOKED |
+|      47 | AC     |         5 | NOT BOOKED |
+|      48 | AC     |         3 | NOT BOOKED |
+|      49 | NON-AC |         4 | NOT BOOKED |
+|      50 | NON-AC |         1 | NOT BOOKED |
++---------+--------+-----------+------------+
+50 rows in set (0.00 sec)
+
+mysql> table book;
++--------+--------------+------------+---------------------------+------------+------------+
+| a_room | name         | mobile_no  | email                     | checkin    | checkout   |
++--------+--------------+------------+---------------------------+------------+------------+
+|      1 | Akash Dandge | 7387591037 | akashdandge100@gmail.com  | 2023-02-28 | 2023-02-28 |
+|      5 | Akash Dandge | 7387591037 | akashdandge100@gmail.com  | 2023-02-28 | 2023-02-28 |
+|     37 | sky          | 7387591037 | kkk@gmail.com             | 2023-02-28 | 2023-02-28 |
+|     33 | Demo3        | 1234567890 | akashd@brightcomgroup.com | 2023-02-28 | 2023-03-03 |
+|     19 | akash        | 1211212121 | akashdandge100@gmail.com  | 2023-02-12 | 2023-02-12 |
++--------+--------------+------------+---------------------------+------------+------------+
+5 rows in set (0.00 sec)
+
+mysql> Terminal close -- exit!

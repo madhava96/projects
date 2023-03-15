@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    {% include 'cdnlines.html' %}
+    <title>EMPLOYEE FROM</title>
+</head>
+<style>
+    body {
+        background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQYiLnJOAFnUxpbmbwGPA0I5mRxOqopR52xlQ&usqp=CAU');
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+    
+    form {
+        border-radius: 10px;
+        height:500px;
+        font-size:15px;
+    }
+    input{
+        font-size:15px;
+    }
+    label{
+        margin-top:-5px;
+    }
+</style>
+
+<body>
+    <h1 class="text-center display-5">BRIGHTCOM GROUP LIMITED</h1>
+    <a class="nav-link ml-3 text-dark text-right mr-3" href="{% url 'loginpage' %}" style="border-radius:15px; ; font-size:15px; margin-top:-10px; font-weight:800;border:1px solid black;width:90px;" target="_blank" >LOGOUT</a>
+    <hr size="5" color="black">
+    <div class="container">
+        <div class="row">
+            <div class="offset-md-3 col-md-5">
+                <form method="POST" class=" border shadow-lg px-3 py-3" style="border: 2px solid black;">
+                    {% csrf_token %}
+                    <label>EMPLOYEE_ID:</label>
+                    <input type="number" placeholder="EMPLOYEE_ID" name="EMPLOYEE_ID" class="form-control" >
+                    <label>EMPLOYEE_NAME:</label>
+                    <input type="text" placeholder="EMPLOYEE_NAME" name="EMPLOYEE_NAME" class="form-control" >
+                    <label>DATE_OF_JOINING:</label>
+                    <input type="date" name="DATE_OF_JOINING" class="form-control">
+                    <label>SALARY:</label>
+                    <input type="number" step='any' placeholder="SALARY" name="SALARY" class="form-control">
+                    <label>MOBILE:</label>
+                    <input type="int" placeholder="mobile" name="MOBILE" class="form-control" style="border-radius:30px;" maxlength="10" pattern="[0-9]{10}" required>
+
+                    <label>DESIGNATION:</label>
+                    <input type="text" placeholder="DESIGNATION" name="DESIGNATION" class="form-control" >
+                    <center class="mt-3">
+                        <input type="submit" value="submit" class="mr-4 btn btn-outline-success">
+                        <input type="reset" value="clear" class="btn btn-outline-danger">
+                    </center>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+    {% for message in messages %}
+    {% if message.tags == 'error' %}
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script>
+        m='{{message}}';
+        swal("denied!",m,"error")
+    </script>
+    {% endif %}
+{% endfor %}
+</body>
+
+
+</html>

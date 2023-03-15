@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     {% include 'cdnlines.html' %}
+    <title>EMPLOYEE FORM</title>
+</head>
+<style>
+    body {
+        background-color:#34ebc9;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+    
+    form {
+        border-radius: 10px;
+        height:560px;
+        font-size:15px;
+    }
+    input{
+        font-size:15px;
+    }
+    label{
+        margin-top:-5px;
+    }
+</style>
+
+<body>
+    <!--<a class="nav-link ml-3 text-dark text-right mr-2" href="{% url 'Managerhomepage' %}" style="border-radius:15px; ; font-size:15px; margin-top:-10px; font-weight:800;border:1px solid black;width:90px;" target="_blank" >Back</a>
+    <a class="nav-link  text-dark text-left ml-3" href="{% url 'loginpage' %}" style="border-radius:15px; ; font-size:15px; margin-top:-10px; font-weight:800;border:1px solid black;width:90px;" target="_blank" >Logout</a>
+    -->
+    <nav class="navbar navbar-expand-sm navbar-dark bg-dark" style="margin-top:-10px">
+         <!-- Links -->
+         <ul class="navbar-nav mr-auto">
+             <li class="nav-item">
+                 <a class="nav-link" href="{% url 'Managerhomepage' %}" style="color:white;margin-top:0px;border-radius:15px;border:1px solid white;">Back</a>
+                 </li>
+                 </ul>
+                 <ul class="navbar-nav ml-auto">
+                     <li class="nav-item">
+                         <a class="nav-link" href="{% url 'loginpage' %}" style="color:white;border-radius:15px;border:1px solid white;" target="_blank">Logout</a>
+                        </li>
+                    </ul>
+        </nav>
+        <h1 class="text-center display-5">HOTEL EMPLOYEE DETAILS</h1>
+        
+        
+    <hr size="5" color="black">
+    <div class="container">
+        <div class="row">
+            <div class="offset-md-3 col-md-6">
+                <form method="POST" class=" border shadow-lg px-3 py-3" style="border: 2px solid black;">
+                    {% csrf_token %}
+                    <label><b>EMPLOYEE_ID:</b></label>
+                    <input type="number" placeholder="EMPLOYEE_ID" name="EMPLOYEE_ID" style="border-radius:30px;" required min="1"class="form-control" >
+                    <label><b>EMPLOYEE_NAME:</b></label>
+                    <input type="text" placeholder="EMPLOYEE_NAME" name="EMPLOYEE_NAME" style="border-radius:30px;" required class="form-control" >
+                    <label><b>DATE_OF_JOINING:</b></label>
+                    <input type="date" name="DATE_OF_JOINING"  style="border-radius:30px;" required class="form-control">
+                    <label><b>SALARY:</b></label>
+                    <input type="number" step='any' placeholder="SALARY" name="SALARY" style="border-radius:30px;" required min="1" class="form-control">
+                    <label><b>MOBILE:</b></label>
+                    <input type="tel" placeholder="MOBILENUMBER" name="MOBILENUMBER" style="border-radius:30px;" required maxlength='10' pattern="[0-9]{10}" required class="form-control" >
+                    <label><b>DESIGNATION:</b></label>
+                    <input type="text" placeholder="DESIGNATION" name="DESIGNATION" style="border-radius:30px;" required class="form-control" >
+                    <label><b>Gender :</b></label>
+                    <br> 
+                    <input type="radio" name='GENDER' value="Male" required >
+                    <label><b>Male</b></label>
+                    <input type='radio' name='GENDER' value='female' required>
+                    <label><b>Female</b></label><br>
+                    <center class="mt-3">
+                        
+                        <input type="submit" value="submit" class="mr-4 btn btn-outline-success" style="font-weight:bolder">
+                        
+                        <input type="reset" value="clear" class="btn btn-outline-danger" style="font-weight:bolder">
+                        
+                    </center>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+    {% for message in messages %}
+    {% if message.tags == 'error' %}
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script>
+        m='{{message}}';
+        swal("denied!",m,"error")
+    </script>
+    {% endif %}
+{% endfor %}
+</body>
+
+
+</html>
+

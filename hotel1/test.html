@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <input type="date" id="minDate">
+ <script>
+//    var today = new Date();
+// var dd = today.getDate();
+// var mm = today.getMonth() + 1; //January is 0!
+// var yyyy = today.getFullYear();
+// if (dd > 10) {
+//   dd = '0' + dd
+// }
+// if (mm > 10) {
+//   mm = '0' + mm
+// }
+
+// today = yyyy + '-' + mm + '-' + dd;
+// document.getElementById("datefield").setAttribute("max", today);
+$(document).ready(function () {
+    var today = new Date().toISOString().split('T')[0];
+    $("#minDate").attr('min', today);
+});
+ </script>
+</body>
+</html>

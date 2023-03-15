@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Room Availability Program</title>
+    <style>
+        h1 {
+  text-align: center;
+}
+
+form {
+  text-align: center;
+}
+
+label {
+  display: inline-block;
+  width: 100px;
+  text-align: left;
+}
+
+input[type="button"] {
+  margin-top: 10px;
+}
+
+#result {
+  margin-top: 10px;
+  text-align: center;
+}
+
+    </style>
+  </head>
+  <body>
+    <h1>Room Availability Program</h1>
+    <form>
+      <label for="date">Select a date:</label>
+      <input type="date" id="date" name="date">
+      <br>
+      <label for="time">Select a time:</label>
+      <input type="time" id="time" name="time">
+      <br>
+      <input type="button" value="Check Availability" onclick="checkAvailability()">
+    </form>
+    <div id="result"></div>
+    <script>
+        function checkAvailability() {
+  var date = document.getElementById("date").value;
+  var time = document.getElementById("time").value;
+  var resultDiv = document.getElementById("result");
+  
+  // Check if date and time are valid
+  if (date === "" || time === "") {
+    resultDiv.innerHTML = "Please select a valid date and time.";
+    return;
+  }
+  
+  // Check if the selected date and time are available
+  // Replace this with your own logic to check availability
+  var available = true;
+  
+  // Display the result
+  if (available) {
+    resultDiv.innerHTML = "The room is available at " + time + " on " + date + ".";
+  } else {
+    resultDiv.innerHTML = "The room is not available at " + time + " on " + date + ".";
+  }
+}
+
+    </script>
+  </body>
+</html>

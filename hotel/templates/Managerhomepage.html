@@ -1,0 +1,37 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!---styles for page-->
+    <style>
+         body{
+    
+    background-repeat: no-repeat;
+    background-size: cover;
+    
+    }
+    h1{
+        
+        border-width: 5px lightblue ;
+        text-align: center ;
+        color: white;
+        }
+    </style>
+</head>
+
+<h1>Admin Dashboard</h1>
+{% include 'navbar2.html' %}  <!-- it includes navbar2.html-->
+
+<body background="{% static '/images/3.jpg'%}">
+    <p id="p1"></p>
+    <script>
+        var date = new Date();
+        var current_time = date.getHours()+":"+date.getMinutes()+":"+ date.getSeconds();
+        document.getElementById("p1").innerHTML = current_time;
+    </script>
+</body>
+</html>

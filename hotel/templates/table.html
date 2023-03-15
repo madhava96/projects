@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+* {
+  box-sizing: border-box;
+}
+
+.row {
+  display:flex;
+  margin-left:-5px;
+  margin-right:-5px;
+}
+  
+.column {
+  flex: 30%;
+  float: left;
+  width: 30%;
+  padding: 5px;
+}
+
+/* Clearfix (clear floats) */
+.row::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
+  border: 1px solid #ddd;
+}
+
+th, td {
+  text-align: left;
+  padding: 16px;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+.Scroll {
+    height:600px;
+    overflow-y: scroll;
+  }
+  
+    .table-fixed tbody{
+      display: block;
+      height: 300px;
+      overflow-y: auto;
+
+    }
+    .above-scroller  {
+      overflow-x: scroll;
+      overflow-y:hidden;
+      height: 20px;
+      width: 1200px
+    }
+   
+   .scroller {
+     width:4500px;
+     height: 20px;
+   }
+   
+   .table {
+     width:100%;
+     height: 100%;
+     overflow: auto;
+   }
+   function doubleScroll(){
+    $(".topScrollVisible").scroll(function(){
+        $(".tableWrapper")
+            .scrollLeft($(".topScrollVisible").scrollLeft());
+    });
+    $(".tableWrapper").scroll(function(){
+        $(".topScrollVisible")
+            .scrollLeft($(".tableWrapper").scrollLeft());
+    });
+}
+function class="column"(){
+  $(".topScrollVisible").scroll(function(){
+      $(".tableWrapper")
+          .scrollLeft($(".topScrollVisible").scrollLeft());
+  });
+  $(".tableWrapper").scroll(function(){
+      $(".topScrollVisible")
+          .scrollLeft($(".tableWrapper").scrollLeft());
+  });
+}
+
+
+
+   
+   
+  
+    
+</style>
+</head>
+<body>
+
+<h2>BOOKING and UNBOOKING FORM</h2>
+<p>CICILY BOOKING FORM:</p>
+<!--<div style="overflow:auto; width:100%; height:130%">
+  <table id="data" style="width:100%"></table>
+  </div>-->
+  
+  
+  
+
+
+<div class="row scroll">
+  <div class="column" style="height: 200px;">
+    <div class="topScrollVisible" style="overflow-x:scroll">
+      <div class="topScrollTableLength" style="width:1520px; height:100%">
+      </div>
+  </div>
+  <div class="tableWrapper" style="overflow:auto; height:100%;">
+      <table id="myTable" style="width:2000px" class="myTableClass">
+  ...
+      </table>
+  
+  
+    
+    <table id="tab1">
+      <tr>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Points</th>
+      </tr>
+      <tr>
+        <td>Jill</td>
+        <td>Smith</td>
+        <td>50</td>
+      </tr>
+      <tr>
+        <td>Eve</td>
+        <td>Jackson</td>
+        <td>94</td>
+      </tr>
+      <tr>
+        <td>Adam</td>
+        <td>Johnson</td>
+        <td>67</td>
+    </tr>
+    <tr>
+        <td>Adam</td>
+        <td>Johnson</td>
+        <td>67</td>
+    </tr>
+    <tr>
+        <td>Adam</td>
+        <td>Johnson</td>
+        <td>67</td>
+    </tr>
+    <tr>
+        <td>Adam</td>
+        <td>Johnson</td>
+        <td>67</td>
+    </tr>
+    <tr>
+        <td>Adam</td>
+        <td>Johnson</td>
+        <td>67</td>
+    </tr>
+    <tr>
+        <td>Adam</td>
+        <td>Johnson</td>
+        <td>67</td>
+    </tr>
+    <tr>
+        <td>Adam</td>
+        <td>Johnson</td>
+        <td>67</td>
+    </tr>
+    <tr>
+        <td>Adam</td>
+        <td>Johnson</td>
+        <td>67</td>
+    </tr>
+    <tr>
+        <td>Adam</td>
+        <td>Johnson</td>
+        <td>67</td>
+    </tr>
+    <tr>
+        <td>Adam</td>
+        <td>Johnson</td>
+        <td>67</td>
+    </tr>
+    <tr>
+        <td>Adam</td>
+        <td>Johnson</td>
+        <td>67</td>
+    </tr>
+    <tr>
+        <td>Adam</td>
+        <td>Johnson</td>
+        <td>67</td>
+    </tr>
+    <tr>
+        <td>Adam</td>
+        <td>Johnson</td>
+        <td>67</td>
+    </tr>
+
+
+
+
+
+    </table>
+
+  </div>
+  <div class="column",style="height: 200px;">
+    <div class="row scroll">
+      <div class="column" style="height: 200px;">
+        <div class="topScrollVisible" style="overflow-x:scroll">
+          <div class="topScrollTableLength" style="width:1520px; height:100%">
+          </div>
+      </div>
+      <div class="tableWrapper" style="overflow:auto; height:100%;">
+          <table id="myTable" style="width:1470px" class="myTableClass">
+      ...
+          </table>
+    
+    <table>
+      <tr>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Points</th>
+      </tr>
+      <tr>
+        <td>Jill</td>
+        <td>Smith</td>
+        <td>50</td>
+      </tr>
+      <tr>
+        <td>Eve</td>
+        <td>Jackson</td>
+        <td>94</td>
+      </tr>
+      <tr>
+        <td>Adam</td>
+        <td>Johnson</td>
+        <td>67</td>
+      </tr>
+      <tr>
+        <td>Adam</td>
+        <td>Johnson</td>
+        <td>67</td>
+    </tr>
+    <tr>
+        <td>Adam</td>
+        <td>Johnson</td>
+        <td>67</td>
+    </tr>
+    <tr>
+        <td>Adam</td>
+        <td>Johnson</td>
+        <td>67</td>
+    </tr>
+    <tr>
+        <td>Adam</td>
+        <td>Johnson</td>
+        <td>67</td>
+    </tr>
+    <tr>
+        <td>Adam</td>
+        <td>Johnson</td>
+        <td>67</td>
+    </tr>
+    
+        
+
+
+
+    </table>
+  </div>
+</div>
+
+</body>
+</html>

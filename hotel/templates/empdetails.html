@@ -1,0 +1,60 @@
+<html>
+    <head>
+        <title></title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        {% include 'cdnlines.html' %} <!--bootstrap cdnlines-->
+        <style>
+             table{
+                margin-top:50px;
+                 border-radius:30px;
+                  font-size:20px;
+                }
+                table {
+                    border-spacing: 0;
+                    width: 100%;
+                    border: 1px solid #ddd;
+                }
+                th {
+                    cursor: pointer;
+                }
+                th, td {
+                    text-align: left;
+                    padding: 16px;
+                 } 
+                   tr:nth-child(even) {
+                    background-color: #f2f2f2
+                 } 
+                </style>
+             </head>
+             {% include 'navbar.html' %}
+              <body>
+                <hr size="5" color='black'>
+                <u><h1 class="text-center" >EMPLOYEE DETAILS</h1></u>
+                <!--fetching data from database in table format-->
+                
+<table class="table table-bordered" id="myTable">
+    <thead class="bg-info" id="w">
+        <tr>
+            <th onclick="sortTable(0)">empid</th>
+            <th onclick="sortTable(1)">empname</th>
+            <th onclick="sortTable(2)">doj</th>
+            <th onclick="sortTable(3)">salary</th>
+            <th onclick="sortTable(4)">mobile</th>
+            <th onclick="sortTable(5)">designation</th>
+        </tr>
+     </thead>
+     <tbody class="bg-transparent text-dark" id="w">
+        {% if empdat %} {% for i in empdat %}
+        <tr>
+            <td>{{i.EMPLOYEE_ID}}</td>
+            <td>{{i.EMPLOYEE_NAME}}</td>
+             <td>{{i.DATE_OF_JOINING}}</td>
+              <td>{{i.SALARY}}</td>
+               <td>{{i.MOBILE}}</td>
+                <td>{{i.DESIGNATION}}</td>
+            </tr>
+            {% endfor %} {% endif %}
+        </tbody>
+    </table>
+    
+
